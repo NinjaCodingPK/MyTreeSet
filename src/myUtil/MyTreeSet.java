@@ -9,9 +9,23 @@ import java.util.Spliterator;
  * Created by wookie on 6/6/16.
  */
 public class MyTreeSet<T extends Comparable<T>> implements Set<T> {
-    private final Node<T> root = new Node<>(null);
-    private int size;
+    private class Node<T> {
+        private Node<T> left;
+        private Node<T> right;
+        private Node<T> parent;
+        T value;
 
+        private Node(T value) {
+            this.value = value;
+        }
+
+        private Node() {
+
+        }
+
+    }
+    private final Node<T> root = new Node<>();
+    private int size;
 
     @Override
     public int size() {
@@ -152,18 +166,6 @@ public class MyTreeSet<T extends Comparable<T>> implements Set<T> {
         return new Object[0];
     }
 
-    private class Node<T> {
-        private Node<T> left;
-        private Node<T> right;
-        private Node<T> parent;
-        T value;
-
-        public Node(T value) {
-            this.value = value;
-        }
-
-
-    }
 
     public boolean contains(T k) {
         Node<T> current = root;
